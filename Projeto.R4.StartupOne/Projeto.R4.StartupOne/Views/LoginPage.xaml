@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Projeto.R4.StartupOne.Views.LoginPage"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.Content>    
+        <StackLayout Orientation="Vertical" Padding="30" Spacing="40">
+            <BoxView HeightRequest="6"/>
+            <Label Text="R4 - StartupOne"
+               FontSize="35"
+                   TextColor="#088da5"                 
+               FontAttributes="Bold"
+               HorizontalOptions="Center" />
+            <BoxView HeightRequest="8"/>
+            <!--<Image HorizontalOptions="Center" WidthRequest="300" Source="back.jpg"/>-->
+            <Frame BackgroundColor="#088da5" HasShadow="False">
+                <StackLayout Orientation="Vertical" Spacing="10">
+                    <Entry x:Name="Email" Text="{Binding Email}" Placeholder="Email"   
+                           PlaceholderColor="White" HeightRequest="40"   
+                           Keyboard="Email"  
+                           TextColor="White"/>
+                    <Entry x:Name="Password" Text="{Binding Password}" Placeholder="Senha"   
+                           PlaceholderColor="White" HeightRequest="40"   
+                           IsPassword="True"  
+                           TextColor="White"/>
+                </StackLayout>
+            </Frame>
+            <Button Command="{Binding SubmitCommand}" Text="Login" TextColor="White"  
+                    FontAttributes="Bold" FontSize="Large" HorizontalOptions="FillAndExpand"  
+                    BackgroundColor="#088da5" />
+            <Label Text="Criar minha conta"
+               FontSize="15"
+                   TextColor="#088da5"
+               FontAttributes="Bold"
+               HorizontalOptions="End" />
+            <StackLayout>
+                <Label  Text="Acesse usando as contas abaixo"
+               FontSize="15"
+               TextColor="#088da5"
+               FontAttributes="Bold"
+               HorizontalOptions="Center" />
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                   
+                  
+                    <ImageButton  Grid.Row="1" Grid.Column="0"  x:Name="gmail" Command="{Binding SubmitOauthGmailCommand}" Source="gmail.JPG" HeightRequest="50"/>
+                    <ImageButton Grid.Row="1" Grid.Column="1" x:Name="facebook" Command="{Binding SubmitOauthFaceCommand}" Source="FACEBOOK.JPG" HeightRequest="50" />
+                    <ImageButton Grid.Row="1" Grid.Column="2" x:Name="twitter" Command="{Binding SubmitOauthTwitterCommand}" Source="TWITTER.JPG" HeightRequest="50" />
+                </Grid>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
