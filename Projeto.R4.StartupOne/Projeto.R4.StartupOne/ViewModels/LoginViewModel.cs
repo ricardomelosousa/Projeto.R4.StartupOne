@@ -58,7 +58,7 @@ namespace Projeto.R4.StartupOne.ViewModels
 
             client = new HttpClient();
             client.BaseAddress = new Uri($"{App.ApiBackendUrl}/");
-            CarregarDados();
+            //CarregarDados();
 
         }
 
