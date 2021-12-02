@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="{Binding Title}"
+             x:Class="Projeto.R4.StartupOne.Views.ConfigCulturaPage">
+    <ContentPage.Content>
+        <Grid Padding="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="120" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="80" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" 
+                       Text="Cultura pop"
+                       FontSize="30" FontAttributes="Bold"
+                       VerticalTextAlignment="Center"
+                       TextColor="Black" />
+
+                <Label Grid.Row="1" Grid.Column="0" 
+                       Text="Ativa as notificações sobre cultura pop baseados em sua localização."
+                       FontSize="Body"
+                       VerticalTextAlignment="Center"
+                       TextColor="Black" />
+
+                <Switch x:Name="switchAtivar" 
+                        Grid.Row="0" 
+                        Grid.Column="1" 
+                        IsToggled="false">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="On">
+                                <VisualState.Setters>
+                                    <Setter Property="ThumbColor" Value="Teal" />
+                                    <Setter Property="OnColor" Value="YellowGreen" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Off">
+                                <VisualState.Setters>
+                                    <Setter Property="ThumbColor" Value="LightGray" />
+                                    <Setter Property="OnColor" Value="Gray" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </Switch>
+
+            </Grid>
+
+            <Grid Grid.Row="1" x:Name="GridTemas" IsVisible="false">
+                <Grid.Triggers>
+                    <DataTrigger TargetType="Grid"
+                                 Binding="{Binding Source={x:Reference switchAtivar}, Path=IsToggled}"
+                                 Value="true">
+                        <Setter Property="IsVisible" Value="true" />
+                    </DataTrigger>
+                </Grid.Triggers>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0"
+                       Text="Selecione os assuntos dos quais gostaria de receber informações:"
+                       FontSize="Body"
+                       VerticalTextAlignment="Start"
+                       TextColor="Black" />
+
+                <ListView ItemsSource="{Binding Temas}" Grid.Row="1" VerticalScrollBarVisibility="Default" SelectionMode="None">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <CheckBox 
+                                        IsChecked="{Binding Marcado}" 
+                                        Grid.Column="0" 
+                                        HorizontalOptions="Start" 
+                                        VerticalOptions="Center"
+                                        Color="Teal"/>
+
+                                    <Label Text="{Binding Descricao}" 
+                                           Grid.Column="1" 
+                                           HorizontalTextAlignment="Start" 
+                                           VerticalTextAlignment="Center"
+                                           FontSize="Medium"/>
+
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </Grid>
+
+            <Button 
+                Text="Salvar" 
+                Command="{Binding SalvarClicked}" 
+                Clicked="FecharClicked"
+                Grid.Row="2"
+                BackgroundColor="Teal"
+                CornerRadius="10"
+                FontSize="Medium" />
+
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>
