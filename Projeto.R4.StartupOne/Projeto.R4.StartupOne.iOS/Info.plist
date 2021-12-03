@@ -7,6 +7,10 @@
         <integer>1</integer>
         <integer>2</integer>
     </array>
+	<Key>UIAppFonts</Key>
+	<array>
+		<string>Font Awesome 6 Free-Solid-900.otf</string>
+	</array>
     <key>UISupportedInterfaceOrientations</key>
     <array>
         <string>UIInterfaceOrientationPortrait</string>
